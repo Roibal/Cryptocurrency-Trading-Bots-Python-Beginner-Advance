@@ -1,7 +1,7 @@
 """
 The Purpose of the RoibalBot Python Program is to create an automated trading bot (functionality) on Binance
 Utilized Python-Binance ( https://github.com/sammchardy/python-binance )
-Advanced-Version capable of all exchanges, all coins (using cctx)
+Advanced-Version capable of all exchanges, all coins (using ccxt)
 
 Created 4/14/2018 by Joaquin Roibal
 V 0.01 - Updated 4/20/2018
@@ -19,39 +19,105 @@ ETH:
 NOTE: All Subsequent Version of Program must contain this message, unmodified, in it's entirety
 Copyright (c) 2018 by Joaquin Roibal
 """
-
-from binance.client import Client
+#import save_historical_data_Roibal
+#from binance.client import Client
+#from binance.enums import *
+import ccxt
 import time
-import matplotlib
-from matplotlib import cm
-import matplotlib.pyplot as plt
-from binance.enums import *
-import save_historical_data_Roibal
-from BinanceKeys import BinanceKey1
+from pprint import pprint
+#from Keys import Key1
 
-api_key = BinanceKey1['api_key']
-api_secret = BinanceKey1['api_secret']
+#api_key = BinanceKey1['api_key']
+#api_secret = BinanceKey1['api_secret']
+#client = Client(api_key, api_secret)
 
-client = Client(api_key, api_secret)
-
-# get a deposit address for BTC
-address = client.get_deposit_address(asset='BTC')
+#Get a deposit address for BTC
+#address = client.get_deposit_address(asset='BTC')
 
 def run():
-    # get system status
+    #Get system status
     #Create List of Crypto Pairs to Watch
-    list_of_symbols = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT','BNBBTC', 'ETHBTC', 'LTCBTC']
-    micro_cap_coins = ['ICXBNB', 'BRDBNB', 'NAVBNB', 'RCNBNB']
+    list_of_symbols = ['BTC/USDT', 'ETH/USDT', 'BNB/USDT','BNB/BTC', 'ETH/BTC', 'LTC/BTC']
+    micro_cap_coins = ['ICX/BNB', 'BRD/BNB', 'NAV/BNB', 'RCN/BNB']
     #time_horizon = "Short"
     #Risk = "High"
     print("\n\n---------------------------------------------------------\n\n")
-    print("Hello and Welcome to the Crypto Trader Bot Python Script\nCreated 2018 by Joaquin Roibal (@BlockchainEng)")
+    print("Hello and Welcome to the ADVANCED Crypto Trader Bot Python Script\nCreated 2018 by Joaquin Roibal (@BlockchainEng)")
     print("A quick 'run-through' will be performed to introduce you to the functionality of this bot")
-    print("To learn more visit medium.com/@BlockchainEng or watch introductory Youtube Videos")
+    print("To learn more visit medium.com/@BlockchainEng or watch introductory Youtube Videos\n\n")
+
     time.sleep(5)
     try:
+            #Get Status of Exchange & Account
+        print("Number of Exchanges: ", len(ccxt.exchanges))
+        print("\nList of Available Exchanges: \n \n")
+        print(ccxt.exchanges)
+
+            #Get Exchange Info For All Listed Exchanges
+        for exch1 in ccxt.exchanges:
+
+            exch = getattr (ccxt, exch1) ()
+        #print(gdax)
+            #Secondary Method to Set Exchange
+        #exchange1 = ccxt.binance()
+            exchange1_info = dir(exch)
+            print("\n\nExchange: ", exch.id)
+            print("\nSet Exchange Info (Limits): ", exch.rateLimit)
+            pprint(exchange1_info)
+            print("\n\nLoad Market: ", exch.load_markets)
+            #print(list(exchange1.markets.keys()))
+            symbols = exch.symbols
+            if symbols is None:
+                print("\n\nNo symbols Loaded\n\n")
+            else:
+                #print("Number of Symbols: ", len(symbols))
+                print("\n\nSymbols: ")
+                #print(exchange1.id, exchange1.markets.keys())
+                print(exch.id, symbols)
+                #print("\n\n'Fetch Orders: ", exchange1.fetch_orders())
+                currencies = exch.currencies
+                print("Currencies: ", currencies)
+                time.sleep(5)
+
+                    #Get Market Depth
+                #for symbol in list_of_symbols:
+                #    market_depth(symbol)
+                """for symbol in exch.markets:
+                    print("Order Book for Symbol:     ", symbol)
+                    print (exch.fetch_order_book (symbol))
+                    time.sleep (3)"""
+
+        #Place a test market buy order, to place an actual order use the create_order function
+
+            #Get Info about Coins in Watch List
+        #coin_prices(list_of_symbols)
+        #coin_tickers(list_of_symbols)
+
+
+
+        #for coin in micro_cap_coins:
+        #    visualize_market_depth(1, 1, coin)
+
+        #for coin in micro_cap_coins:
+        #    scalping_orders(coin, 1, 1)
+
+            #Get recent trades
+        #trades = client.get_recent_trades(symbol='BNBBTC')
+        #print("\nRecent Trades: ", trades)
+        #print("Local Time: ", time.localtime())
+        #print("Recent Trades Time: ", convert_time_binance(trades[0]['time']))
+
+            #Get historical trades
+        #hist_trades = client.get_historical_trades(symbol='BNBBTC')
+        #print("\nHistorical Trades: ", hist_trades)
+
+
+            #Get aggregate trades
+        #agg_trades = client.get_aggregate_trades(symbol='BNBBTC')
+        #print("\nAggregate Trades: ", agg_trades)
+
         #Example Visualizations of Coins
-        save_historical_data_Roibal.save_historic_klines_csv('BTCUSDT', "1 hours ago UTC", "now UTC", Client.KLINE_INTERVAL_1MINUTE)
+        """save_historical_data_Roibal.save_historic_klines_csv('BTCUSDT', "1 hours ago UTC", "now UTC", Client.KLINE_INTERVAL_1MINUTE)
         save_historical_data_Roibal.save_historic_klines_csv('ETHBTC', "6 months ago UTC", "now UTC", Client.KLINE_INTERVAL_1DAY)
         save_historical_data_Roibal.save_historic_klines_csv('BRDBNB', "8 hours ago UTC", "now UTC", Client.KLINE_INTERVAL_3MINUTE)
         save_historical_data_Roibal.save_historic_klines_csv('BTCUSDT', "12 months ago UTC", "now UTC", Client.KLINE_INTERVAL_1WEEK)
@@ -62,62 +128,14 @@ def run():
             save_historical_data_Roibal.save_historic_klines_csv(coin, "8 hours ago UTC", "now UTC", Client.KLINE_INTERVAL_3MINUTE)
             save_historical_data_Roibal.save_historic_klines_csv(coin, "24 hours ago UTC", "now UTC", Client.KLINE_INTERVAL_15MINUTE)
             save_historical_data_Roibal.save_historic_klines_csv(coin, "1 month ago UTC", "now UTC", Client.KLINE_INTERVAL_1DAY)
-
+        """
     except():
-        pass
-    #Get Status of Exchange & Account
-    try:
-        status = client.get_system_status()
-        print("\nExchange Status: ", status)
+        print("\n \n \nATTENTION: NON-VALID CONNECTION WITH CRYPTOCURRENCY BOT \n \n \n")
 
-        #Account Withdrawal History Info
-        withdraws = client.get_withdraw_history()
-        print("\nClient Withdraw History: ", withdraws)
+            #Account Withdrawal History Info
+        #withdraws = client.get_withdraw_history()
+        #print("\nClient Withdraw History: ", withdraws)
 
-        #get Exchange Info
-        info = client.get_exchange_info()
-        print("\nExchange Info (Limits): ", info)
-    except():
-        pass
-
-    # place a test market buy order, to place an actual order use the create_order function
-    # if '1000 ms ahead of server time' error encountered, visit https://github.com/sammchardy/python-binance/issues/249
-    try:
-        order = client.create_test_order(
-            symbol='BNBBTC',
-            side=Client.SIDE_BUY,
-            type=Client.ORDER_TYPE_MARKET,
-            quantity=100)
-    except:
-        print("\n \n \nATTENTION: NON-VALID CONNECTION WITH BINANCE \n \n \n")
-
-    #Get Info about Coins in Watch List
-    coin_prices(list_of_symbols)
-    coin_tickers(list_of_symbols)
-    #for symbol in list_of_symbols:
-    #    market_depth(symbol)
-
-    #for coin in micro_cap_coins:
-    #    visualize_market_depth(1, 1, coin)
-    for coin in micro_cap_coins:
-        scalping_orders(coin, 1, 1)
-
-    #get recent trades
-    trades = client.get_recent_trades(symbol='BNBBTC')
-    print("\nRecent Trades: ", trades)
-    print("Local Time: ", time.localtime())
-    print("Recent Trades Time: ", convert_time_binance(trades[0]['time']))
-
-    #get historical trades
-    try:
-        hist_trades = client.get_historical_trades(symbol='BNBBTC')
-        print("\nHistorical Trades: ", hist_trades)
-    except:
-        print('\n \n \nATTENTION: NON VALID CONNECTION WITH BINANCE \n \n \n')
-
-    #get aggregate trades
-    agg_trades = client.get_aggregate_trades(symbol='BNBBTC')
-    print("\nAggregate Trades: ", agg_trades)
 
 
 def convert_time_binance(gt):
