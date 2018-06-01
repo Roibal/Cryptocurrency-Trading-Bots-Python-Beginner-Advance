@@ -24,45 +24,21 @@ Version 2: cctx
 ### Installing
 https://www.youtube.com/watch?v=Y4RwD1OGz4c
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Can be Deployed:
+* Raspberry Pi
+* Cloud Service such as Heroku/Amazon Web Services
+* Home Computer
 
 ## Built With
 
 * Pycharm
 
-## Contributing
-
-Please read [CONTRIBUTING.md](test test) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-* 
+* Joaquin Roibal
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -72,6 +48,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* For Readme Format: **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* For Readme Format: Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth)
 * Python-Binance
 * CCTX
