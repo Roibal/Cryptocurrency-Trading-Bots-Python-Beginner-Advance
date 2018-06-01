@@ -1,6 +1,6 @@
 """
 The Purpose of the RoibalBot Python Program is to create an automated trading bot (functionality) on Binance
-Utilized Python-Binance ( https://github.com/sammchardy/python-binance )
+Beginner Version Utilized Python-Binance ( https://github.com/sammchardy/python-binance )
 Advanced-Version capable of all exchanges, all coins (using ccxt)
 
 Created 4/14/2018 by Joaquin Roibal
@@ -57,20 +57,20 @@ def run():
         for exch1 in ccxt.exchanges:
 
             exch = getattr (ccxt, exch1) ()
-        #print(gdax)
+                #print(gdax)
             #Secondary Method to Set Exchange
         #exchange1 = ccxt.binance()
-            exchange1_info = dir(exch)
+            #exchange1_info = dir(exch)
+            #pprint(exchange1_info)
             print("\n\nExchange: ", exch.id)
             print("\nSet Exchange Info (Limits): ", exch.rateLimit)
-            pprint(exchange1_info)
             print("\n\nLoad Market: ", exch.load_markets)
             #print(list(exchange1.markets.keys()))
             symbols = exch.symbols
             if symbols is None:
                 print("\n\nNo symbols Loaded\n\n")
             else:
-                #print("Number of Symbols: ", len(symbols))
+                print("Number of Symbols: ", len(symbols))
                 print("\n\nSymbols: ")
                 #print(exchange1.id, exchange1.markets.keys())
                 print(exch.id, symbols)
@@ -92,8 +92,6 @@ def run():
             #Get Info about Coins in Watch List
         #coin_prices(list_of_symbols)
         #coin_tickers(list_of_symbols)
-
-
 
         #for coin in micro_cap_coins:
         #    visualize_market_depth(1, 1, coin)
