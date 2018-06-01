@@ -9,7 +9,8 @@ v 0.02 - Updated 5/30/2018 - Converted to Advanced Version: https://github.com/R
 
 Licensed under MIT License
 
-Instructional Youtube Video: https://www.youtube.com/watch?v=8AAN03M8QhA
+Introduction Youtube Video: https://www.youtube.com/watch?v=8AAN03M8QhA
+Advanced Cryptocurrency Trading Bot: https://www.youtube.com/watch?v=HzibFcWNd-s
 
 Did you enjoy the functionality of this bot? Tips always appreciated.
 
@@ -19,11 +20,13 @@ ETH:
 NOTE: All Subsequent Version of Program must contain this message, unmodified, in it's entirety
 Copyright (c) 2018 by Joaquin Roibal
 """
+
 #import save_historical_data_Roibal
 #from binance.client import Client
 #from binance.enums import *
 import ccxt
 import time
+import matplotlib.pyplot as plt
 from pprint import pprint
 #from Keys import Key1
 
@@ -37,8 +40,8 @@ from pprint import pprint
 def run():
     #Get system status
     #Create List of Crypto Pairs to Watch
-    list_of_symbols = ['BTC/USDT', 'ETH/USDT', 'BNB/USDT','BNB/BTC', 'ETH/BTC', 'LTC/BTC']
-    micro_cap_coins = ['ICX/BNB', 'BRD/BNB', 'NAV/BNB', 'RCN/BNB']
+    list_of_symbols = []
+    micro_cap_coins = []
     #time_horizon = "Short"
     #Risk = "High"
     print("\n\n---------------------------------------------------------\n\n")
@@ -63,25 +66,28 @@ def run():
             #exchange1_info = dir(exch)
             #pprint(exchange1_info)
             print("\n\nExchange: ", exch.id)
-            print("\nSet Exchange Info (Limits): ", exch.rateLimit)
-            print("\n\nLoad Market: ", exch.load_markets)
+            print("Set Exchange Info (Limits): ", exch.rateLimit)
+            print("Load Market: ", exch.load_markets)
             #print(list(exchange1.markets.keys()))
             symbols = exch.symbols
             if symbols is None:
-                print("\n\nNo symbols Loaded\n\n")
+                print("\n-----------------\nNo symbols Loaded\n-----------------")
             else:
-                print("Number of Symbols: ", len(symbols))
-                print("\n\nSymbols: ")
+                print("-----------------------\nNumber of Symbols: ", len(symbols))
+                print("Exchange & Symbols:")
                 #print(exchange1.id, exchange1.markets.keys())
-                print(exch.id, symbols)
+                print(exch.id,"-      ", symbols)
+                print("-----------------------")
+                for sym in symbols:
+                    list_of_symbols.append(sym)
                 #print("\n\n'Fetch Orders: ", exchange1.fetch_orders())
                 currencies = exch.currencies
-                print("Currencies: ", currencies)
+                #print("Currencies: ", currencies)
                 time.sleep(5)
 
-                    #Get Market Depth
+                #Get Market Depth
                 #for symbol in list_of_symbols:
-                #    market_depth(symbol)
+                    #market_depth(symbol)
                 """for symbol in exch.markets:
                     print("Order Book for Symbol:     ", symbol)
                     print (exch.fetch_order_book (symbol))
@@ -109,7 +115,6 @@ def run():
         #hist_trades = client.get_historical_trades(symbol='BNBBTC')
         #print("\nHistorical Trades: ", hist_trades)
 
-
             #Get aggregate trades
         #agg_trades = client.get_aggregate_trades(symbol='BNBBTC')
         #print("\nAggregate Trades: ", agg_trades)
@@ -133,25 +138,6 @@ def run():
             #Account Withdrawal History Info
         #withdraws = client.get_withdraw_history()
         #print("\nClient Withdraw History: ", withdraws)
-
-
-
-def convert_time_binance(gt):
-    #Converts from Binance Time Format (milliseconds) to time-struct
-    #From Binance-Trader Comment Section Code
-    #gt = client.get_server_time()
-    print("Binance Time: ", gt)
-    print(time.localtime())
-    aa = str(gt)
-    bb = aa.replace("{'serverTime': ","")
-    aa = bb.replace("}","")
-    gg=int(aa)
-    ff=gg-10799260
-    uu=ff/1000
-    yy=int(uu)
-    tt=time.localtime(yy)
-    #print(tt)
-    return tt
 
 
 def market_depth(sym, num_entries=20):
@@ -298,8 +284,6 @@ def portfolio_management(deposit = '10000', withdraw=0, portfolio_amt = '0', por
 
 def Bollinger_Bands():
     #This Function will calculate Bollinger Bands for Given Time Period
-    #EDIT: Will use Crypto-Signal for this functionality
-    #https://github.com/CryptoSignal/crypto-signal
     pass
 
 def buy_sell_bot():
@@ -310,54 +294,6 @@ def position_sizing():
 
 def trailing_stop_loss():
     pass
-
-
-#Place Limit Order
-"""
-order = client.order_limit_buy(
-    symbol='BNBBTC',
-    quantity=100,
-    price='0.00001')
-
-order = client.order_limit_sell(
-    symbol='BNBBTC',
-    quantity=100,
-    price='0.00001')
-"""
-
-
-
-
-"""
-#trade aggregator (generator)
-agg_trades = client.aggregate_trade_iter(symbol='ETHBTC', start_str='30 minutes ago UTC')
-# iterate over the trade iterator
-for trade in agg_trades:
-    pass
-    #print(trade)
-    # do something with the trade data
-
-# convert the iterator to a list
-# note: generators can only be iterated over once so we need to call it again
-agg_trades = client.aggregate_trade_iter(symbol='ETHBTC', start_str='30 minutes ago UTC')
-agg_trade_list = list(agg_trades)
-
-# fetch 30 minute klines for the last month of 2017
-klines = client.get_historical_klines("ETHBTC", Client.KLINE_INTERVAL_30MINUTE, "1 Dec, 2017", "1 Jan, 2018")
-#for kline in klines:
-    #print(kline)
-"""
-
-#place an order on Binance
-"""
-order = client.create_order(
-    symbol='BNBBTC',
-    side=SIDE_BUY,
-    type=ORDER_TYPE_LIMIT,
-    timeInForce=TIME_IN_FORCE_GTC,
-    quantity=100,
-    price='0.00001')
-"""
 
 if __name__ == "__main__":
     run()
