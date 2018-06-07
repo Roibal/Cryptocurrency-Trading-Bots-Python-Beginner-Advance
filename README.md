@@ -11,6 +11,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 https://www.youtube.com/watch?v=8AAN03M8QhA
 
+Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA_Nkw
+
 ### Prerequisites
 
 What things you need to install the software and how to install them
