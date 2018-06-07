@@ -27,6 +27,7 @@ Copyright (c) 2018 by Joaquin Roibal
 import ccxt
 import time
 import matplotlib.pyplot as plt
+import random
 from pprint import pprint
 #from Keys import Key1
 
@@ -40,7 +41,7 @@ from pprint import pprint
 def run():
     #Get system status
     #Create List of Crypto Pairs to Watch
-    list_of_symbols = []
+    all_symbols = []
     micro_cap_coins = []
     #time_horizon = "Short"
     #Risk = "High"
@@ -58,7 +59,7 @@ def run():
 
             #Get Exchange Info For All Listed Exchanges
         for exch1 in ccxt.exchanges:
-
+            list_of_symbols = []        #Reset List of Symbols for Each Exchange
             exch = getattr (ccxt, exch1) ()
                 #print(gdax)
             #Secondary Method to Set Exchange
@@ -79,7 +80,8 @@ def run():
                 print(exch.id,"-      ", symbols)
                 print("-----------------------")
                 for sym in symbols:
-                    list_of_symbols.append(sym)
+                    list_of_symbols.append(sym) #Create List of Symbols - Each Exchange
+                    all_symbols.append(sym)     #Create List of ALL Symbols on ALL Exchanges
                 #print("\n\n'Fetch Orders: ", exchange1.fetch_orders())
                 currencies = exch.currencies
                 #print("Currencies: ", currencies)
@@ -88,6 +90,12 @@ def run():
                 #Get Market Depth
                 #for symbol in list_of_symbols:
                     #market_depth(symbol)
+                #Test Market Order - Visualize - Scalping Functions: Testing with random coin of each exchange
+                rand_sym = random.choice(list_of_symbols)
+                market_depth(rand_sym, exch)
+                visualize_market_depth(sym=rand_sym, exchange=exch)
+                scalping_orders(exch, rand_sym)
+                time.sleep(4)
                 """for symbol in exch.markets:
                     print("Order Book for Symbol:     ", symbol)
                     print (exch.fetch_order_book (symbol))
@@ -140,13 +148,14 @@ def run():
         #print("\nClient Withdraw History: ", withdraws)
 
 
-def market_depth(sym, num_entries=20):
+def market_depth(sym, exchange=ccxt.binance(), num_entries=20):
     #Get market depth
     #Retrieve and format market depth (order book) including time-stamp
     i=0     #Used as a counter for number of entries
-    print("Order Book: ", convert_time_binance(client.get_server_time()))
-    depth = client.get_order_book(symbol=sym)
-    print(depth)
+    print("Order Book: ") #convert_time_binance(client.get_server_time()))   #Transfer to CCXT
+    exchange.verbose = True
+    depth = exchange.fetch_order_book(symbol=sym)               #Transf'd to CCXT
+    #pprint(depth)
     print(depth['asks'][0])
     ask_tot=0.0
     ask_price =[]
@@ -158,13 +167,14 @@ def market_depth(sym, num_entries=20):
     place_order_bid_price = 0
     max_order_ask = 0
     max_order_bid = 0
-    print("\n", sym, "\nDepth     ASKS:\n")
+    print("\n", sym, "\nDepth     ASKS:\n")         #Edit to work with CCXT
     print("Price     Amount")
     for ask in depth['asks']:
         if i<num_entries:
             if float(ask[1])>float(max_order_ask):
                 #Determine Price to place ask order based on highest volume
                 max_order_ask=ask[1]
+                #print("Max Order ASK: ", max_order_ask)
                 place_order_ask_price=round(float(ask[0]),5)-0.0001
             #ask_list.append([ask[0], ask[1]])
             ask_price.append(float(ask[0]))
@@ -180,6 +190,7 @@ def market_depth(sym, num_entries=20):
             if float(bid[1])>float(max_order_bid):
                 #Determine Price to place ask order based on highest volume
                 max_order_bid=bid[1]
+                #print("Max Order BID: ", max_order_bid)
                 place_order_bid_price=round(float(bid[0]),5)+0.0001
             bid_price.append(float(bid[0]))
             bid_tot += float(bid[1])
@@ -189,10 +200,10 @@ def market_depth(sym, num_entries=20):
     return ask_price, ask_quantity, bid_price, bid_quantity, place_order_ask_price, place_order_bid_price
     #Plot Data
 
-def scalping_orders(coin, wait=1, tot_time=1):
+def scalping_orders(exchange = ccxt.binance(), coin='BTC/USDT', wait=1, tot_time=1):
     #Function for placing 'scalp orders'
     #Calls on Visualizing Scalping Orders Function
-    ap, aq, bp, bq, place_ask_order, place_bid_order, spread, proj_spread, max_bid, min_ask = visualize_market_depth(wait, tot_time, coin)
+    ap, aq, bp, bq, place_ask_order, place_bid_order, spread, proj_spread, max_bid, min_ask = visualize_market_depth(wait, tot_time, coin, 5, exchange)
     print("Coin: {}\nPrice to Place Ask Order: {}\nPrice to place Bid Order: {}".format(coin, place_ask_order, place_bid_order))
     print("Spread: {} % Projected Spread {} %".format(spread, proj_spread))
     print("Max Bid: {} Min Ask: {}".format(max_bid, min_ask))
@@ -218,12 +229,12 @@ def scalping_orders(coin, wait=1, tot_time=1):
     """
 
 
-def visualize_market_depth(wait_time_sec='1', tot_time='1', sym='ICXBNB', precision=5):
+def visualize_market_depth(wait_time_sec='1', tot_time='1', sym='BTC/USDT', precision=5, exchange=ccxt.binance()):
     cycles = int(tot_time)/int(wait_time_sec)
-    start_time = time.asctime()
+    start_time = time.asctime()         #Trans CCXT
     fig, ax = plt.subplots()
     for i in range(1,int(cycles)+1):
-        ask_pri, ask_quan, bid_pri, bid_quan, ask_order, bid_order = market_depth(sym)
+        ask_pri, ask_quan, bid_pri, bid_quan, ask_order, bid_order = market_depth(sym, exchange)
 
         #print(ask_price)
         plt.plot(ask_pri, ask_quan, color = 'red', label='asks-cycle: {}'.format(i))
@@ -250,7 +261,7 @@ def visualize_market_depth(wait_time_sec='1', tot_time='1', sym='ICXBNB', precis
             time.sleep(int(wait_time_sec))
     #end_time = time.asctime()
     ax.set(xlabel='Price', ylabel='Quantity',
-       title='Binance Order Book: {} \n {}\n Cycle Time: {} seconds - Num Cycles: {}'.format(sym, start_time, wait_time_sec, cycles))
+       title='{} Order Book: {} \n {}\n Cycle Time: {} seconds - Num Cycles: {}'.format(exchange.id, sym, start_time, wait_time_sec, cycles))
     plt.legend()
     plt.show()
     return ask_pri, ask_quan, bid_pri, bid_quan, ask_order, bid_order, spread, proj_order_spread, max_bid, min_ask
@@ -259,7 +270,7 @@ def visualize_market_depth(wait_time_sec='1', tot_time='1', sym='ICXBNB', precis
 def coin_prices(watch_list):
     #Will print to screen, prices of coins on 'watch list'
     #returns all prices
-    prices = client.get_all_tickers()
+    prices = client.get_all_tickers()           #Trans CCXT
     print("\nSelected (watch list) Ticker Prices: ")
     for price in prices:
         if price['symbol'] in watch_list:
@@ -270,7 +281,7 @@ def coin_prices(watch_list):
 def coin_tickers(watch_list):
     # Prints to screen tickers for 'watch list' coins
     # Returns list of all price tickers
-    tickers = client.get_orderbook_tickers()
+    tickers = client.get_orderbook_tickers()            #Trans CCXT
     print("\nWatch List Order Tickers: \n")
     for tick in tickers:
         if tick['symbol'] in watch_list:
