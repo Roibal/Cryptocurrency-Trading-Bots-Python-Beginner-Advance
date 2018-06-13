@@ -39,6 +39,126 @@ from pprint import pprint
 #address = client.get_deposit_address(asset='BTC')
 
 def run():
+    #Initialize Function - Set Initial Conditions for Bot
+    arbitrage()
+    time.sleep(20)
+    initialize()
+    #Diversify Funtion - Collect all balances across exchange, then diversify them
+    #diversify()
+    portfolio = 10  #BTC
+    #Active Trader - 'scalping', swing trading, arbitrage
+    while 1:
+        ActiveTrader()
+
+def arbitrage():
+    #Create Triangular Arbitrage Function
+    print("Arbitrage Function Running")
+    coins = ['BTC', 'LTC', 'ETH']   #Coins to Arbitrage
+    for exch in ccxt.exchanges:    #initialize Exchange
+        exchange1 = getattr (ccxt, exch) ()
+        symbols = exchange1.symbols
+        if symbols is None:
+            print("\n-----------------\nNext Exchange\n-----------------")
+        elif len(symbols)<15:
+            print("\n-----------------\nNeed more Pairs (Next Exchange)\n-----------------")
+        else:
+            print(exchange1)
+
+            exchange1_info = dir(exchange1)
+            print("------------Exchange: ", exchange1.id)
+            #pprint(exchange1_info)
+            print(exchange1.symbols)    #List all currencies
+            time.sleep(5)
+            #Find Currencies Trading Pairs to Trade
+            pairs = []
+            for sym in symbols:
+                for symbol in coins:
+                    if symbol in sym:
+                        pairs.append(sym)
+            print(pairs)
+            #From Coin 1 to Coin 2 - ETH/BTC - Bid
+            #From Coin 2 to Coin 3 - ETH/LTC - Ask
+            #From Coin 3 to Coin 1 - BTC/LTC - Bid
+            arb_list = ['ETH/BTC'] #, 'ETH/LTC', 'BTC/LTC']
+            #Find 'closed loop' of currency pairs
+            j=0
+            while 1:
+                if j == 1:
+                            final = arb_list[0][-3:]  + '/' + str(arb_list[1][-3:])
+                            print(final)
+                            time.sleep(2)
+                            #if final in symbols:
+                            arb_list.append(final)
+                            break
+                time.sleep(.3)
+                for sym in symbols:
+                    if sym in arb_list:
+                        pass
+                    else:
+                        if j % 2 == 0:
+                            if arb_list[j][0:3] == sym[0:3]:
+                                if arb_list[j] == sym:
+                                    pass
+                                else:
+                                    arb_list.append(sym)
+                                    print(arb_list)
+                                    j+=1
+                                    break
+                        if j % 2 == 1:
+                            if arb_list[j][-3:] == sym[-3:]:
+                                if arb_list[j] == sym:
+                                    pass
+                                else:
+                                    arb_list.append(sym)
+                                    print(arb_list)
+                                    j+=1
+                                    break
+
+                #time.sleep(.5)
+            print("List of Arbitrage Symbols:", arb_list)
+            time.sleep(3)
+        #Determine Rates for our 3 currency pairs - order book
+            i=0
+            exch_rate_list = []
+            for sym in arb_list:
+                if sym in symbols:
+                    depth = exchange1.fetch_order_book(symbol=sym)
+                    #pprint(depth)
+                    time.sleep(3)
+                    if i % 2 == 0:
+                        exch_rate_list.append(depth['bids'][0][0])
+                    else:
+                        exch_rate_list.append(depth['asks'][0][0])
+                else:
+                    exch_rate_list.append(0)
+            print(exch_rate_list)
+        #Compare to determine if Arbitrage opp exists
+            if exch_rate_list[0]<exch_rate_list[1]/exch_rate_list[2]:
+                print("Arbitrage Possibility")
+            else:
+                print("No Arbitrage Possibility")
+
+def diversify():
+        #Diversify to do (Diversify will diversify portfolio):
+            #Collect Amounts in Wallets (available for trading)
+    for exch2 in ccxt.exchanges:
+        #Change to incorporate requiring API's keys & phrases (from Keys Python Script)
+        exch = getattr (ccxt, exch2) ()
+        print(exch.fetchBalance())
+    #Diversify into pre-described amounts
+        # 50% BTC, 5% Each of 8 next-top coins, 10x 1% of micro-caps
+    pass
+
+def ActiveTrader():
+    #Active Trader - Continuous Loop of calling trader functions such as scalping &
+                #arbitrage function
+    #Scalping Function
+    #Swing Trading Function - Signals
+    #Arbitrage Function
+    pass
+
+def initialize():
+    #Initialize Function - Set Initial Conditions for Bot
     #Get system status
     #Create List of Crypto Pairs to Watch
     all_symbols = []
@@ -51,6 +171,7 @@ def run():
     print("To learn more visit medium.com/@BlockchainEng or watch introductory Youtube Videos\n\n")
 
     time.sleep(5)
+    i = 0
     try:
             #Get Status of Exchange & Account
         print("Number of Exchanges: ", len(ccxt.exchanges))
@@ -60,6 +181,8 @@ def run():
             #Get Exchange Info For All Listed Exchanges
         for exch1 in ccxt.exchanges:
             list_of_symbols = []        #Reset List of Symbols for Each Exchange
+            if i>0:
+                break           #Break Out of Statement
             exch = getattr (ccxt, exch1) ()
                 #print(gdax)
             #Secondary Method to Set Exchange
@@ -95,7 +218,9 @@ def run():
                 market_depth(rand_sym, exch)
                 visualize_market_depth(sym=rand_sym, exchange=exch)
                 scalping_orders(exch, rand_sym)
+                i+=1        #Break Out of Initialize Statement
                 time.sleep(4)
+
                 """for symbol in exch.markets:
                     print("Order Book for Symbol:     ", symbol)
                     print (exch.fetch_order_book (symbol))
@@ -140,6 +265,7 @@ def run():
             save_historical_data_Roibal.save_historic_klines_csv(coin, "24 hours ago UTC", "now UTC", Client.KLINE_INTERVAL_15MINUTE)
             save_historical_data_Roibal.save_historic_klines_csv(coin, "1 month ago UTC", "now UTC", Client.KLINE_INTERVAL_1DAY)
         """
+        print("INITIALIZE SUCCESSFUL")
     except():
         print("\n \n \nATTENTION: NON-VALID CONNECTION WITH CRYPTOCURRENCY BOT \n \n \n")
 
