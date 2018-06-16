@@ -50,14 +50,17 @@ def run():
     while 1:
         ActiveTrader()
 
-def arbitrage():
+def arbitrage(cycle_num=5, cycle_time=120):
     #Create Triangular Arbitrage Function
     print("Arbitrage Function Running")
+    fee_percentage = 0.001          #divided by 100
     coins = ['BTC', 'LTC', 'ETH']   #Coins to Arbitrage
+    #Create Functionality for Binance
     for exch in ccxt.exchanges:    #initialize Exchange
         exchange1 = getattr (ccxt, exch) ()
         symbols = exchange1.symbols
         if symbols is None:
+            print("Skipping Exchange ", exch)
             print("\n-----------------\nNext Exchange\n-----------------")
         elif len(symbols)<15:
             print("\n-----------------\nNeed more Pairs (Next Exchange)\n-----------------")
@@ -80,17 +83,15 @@ def arbitrage():
             #From Coin 2 to Coin 3 - ETH/LTC - Ask
             #From Coin 3 to Coin 1 - BTC/LTC - Bid
             arb_list = ['ETH/BTC'] #, 'ETH/LTC', 'BTC/LTC']
-            #Find 'closed loop' of currency pairs
+            #Find 'closed loop' of currency rate pairs
             j=0
             while 1:
                 if j == 1:
                             final = arb_list[0][-3:]  + '/' + str(arb_list[1][-3:])
                             print(final)
-                            time.sleep(2)
                             #if final in symbols:
                             arb_list.append(final)
                             break
-                time.sleep(.3)
                 for sym in symbols:
                     if sym in arb_list:
                         pass
@@ -116,27 +117,98 @@ def arbitrage():
 
                 #time.sleep(.5)
             print("List of Arbitrage Symbols:", arb_list)
-            time.sleep(3)
+            #time.sleep(3)
         #Determine Rates for our 3 currency pairs - order book
-            i=0
-            exch_rate_list = []
-            for sym in arb_list:
-                if sym in symbols:
-                    depth = exchange1.fetch_order_book(symbol=sym)
-                    #pprint(depth)
-                    time.sleep(3)
-                    if i % 2 == 0:
-                        exch_rate_list.append(depth['bids'][0][0])
+            list_exch_rate_list = []
+        #Create Visualization of Currency Exchange Rate Value - Over Time
+            #Determine Cycle number (when data is taken) and time when taken
+            for k in range(0,cycle_num):
+                i=0
+                exch_rate_list = []
+                print("Cycle Number: ", k)
+                for sym in arb_list:
+                    print(sym)
+                    if sym in symbols:
+                        depth = exchange1.fetch_order_book(symbol=sym)
+                        #pprint(depth)
+                        if i % 2 == 0:
+                            exch_rate_list.append(depth['bids'][0][0])
+                        else:
+                            exch_rate_list.append(depth['asks'][0][0])
+                        i+=1
                     else:
-                        exch_rate_list.append(depth['asks'][0][0])
+                        exch_rate_list.append(0)
+                #exch_rate_list.append(((rateB[-1]-rateA[-1])/rateA[-1])*100)  #Expected Profit
+                exch_rate_list.append(time.time())      #change to Human Readable time
+                print(exch_rate_list)
+                #Compare to determine if Arbitrage opp exists
+                if exch_rate_list[0]<exch_rate_list[1]/exch_rate_list[2]:
+                    print("Arbitrage Possibility")
                 else:
-                    exch_rate_list.append(0)
-            print(exch_rate_list)
-        #Compare to determine if Arbitrage opp exists
-            if exch_rate_list[0]<exch_rate_list[1]/exch_rate_list[2]:
-                print("Arbitrage Possibility")
-            else:
-                print("No Arbitrage Possibility")
+                    print("No Arbitrage Possibility")
+                #Format data (list) into List format (list of lists)
+                list_exch_rate_list.append(exch_rate_list)
+                time.sleep(cycle_time)
+            print(list_exch_rate_list)
+            #Create list from Lists for matplotlib format
+            rateA = []      #Original Exchange Rate
+            rateB = []      #Calculated/Arbitrage Exchange Rate
+            rateB_fee = []  #Include Transaction Fee
+            price1 = []     #List for Price of Token (Trade) 1
+            price2 = []     #List for price of Token (Trade) 2
+            time_list = []  #time of data collection
+            #profit = []     #Record % profit
+            for rate in list_exch_rate_list:
+                rateA.append(rate[0])
+                rateB.append(rate[1]/rate[2])
+                rateB_fee.append((rate[1]/rate[2])*(1-fee_percentage)*(1-fee_percentage))
+                price1.append(rate[1])
+                price2.append(rate[2])
+                #profit.append((rateB[-1]-rateA[-1])/rateA[-1])
+                time_list.append(rate[3])
+            print("Rate A: {} \n Rate B: {} \n Rate C: {} \n".format(rateA, rateB, rateB_fee))
+            #Visualize with Matplotlib
+            #use matplotlib to plot data
+            #from https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot
+        #Extended 3 axis functionality - https://matplotlib.org/gallery/ticks_and_spines/multiple_yaxis_with_spines.html#sphx-glr-gallery-ticks-and-spines-multiple-yaxis-with-spines-py
+            #fig, ax = plt.subplots()
+            fig, host = plt.subplots()
+            fig.subplots_adjust(right=0.75)
+
+            par1 = host.twinx()
+            par2 = host.twinx()
+            par2.spines["right"].set_position(("axes", 1.2))
+            make_patch_spines_invisible(par2)
+            par2.spines["right"].set_visible(True)
+            #Graph Rate & Calculated Rate on Left Hand Side
+            p1, = host.plot(time_list, rateA, 'k', label = "{}".format(arb_list[0]))
+            p1, = host.plot(time_list, rateB, 'k+', label = "{} / {}".format(arb_list[1], arb_list[2]))
+            #p1, = host.plot(time_list, rateB_fee, 'k+', label = "{} / {} - with Fee".format(arb_list[1], arb_list[2]))
+            #Graph Exchange Rate (Originals)
+            p2, = par1.plot(time_list, price1, "b-", label="Price - {}".format(arb_list[1]))
+            p3, = par2.plot(time_list, price2, "g-", label="Price - {}".format(arb_list[2]))
+            #show our graph - with labels
+
+            host.set_xlabel("Time")
+            host.set_ylabel("Exchange Rate")
+            par1.set_ylabel("Price - ", arb_list[1])
+            par2.set_ylabel("Price - ", arb_list[2])
+            host.yaxis.label.set_color(p1.get_color())
+            tkw = dict(size=4, width=1.5)
+            host.tick_params(axis='y', colors=p1.get_color(), **tkw)
+            par1.tick_params(axis='y', colors=p2.get_color(), **tkw)
+            par2.tick_params(axis='y', colors=p3.get_color(), **tkw)
+            host.tick_params(axis='x', **tkw)
+            #ax.set(xlabel='Date', ylabel='Exchange Rate', title='Exchange: {}'.format(exch))
+            lines = [p1, p2, p3]
+            host.legend(lines, [l.get_label() for l in lines])  #show Legend
+            plt.show()
+
+def make_patch_spines_invisible(ax):
+    ax.set_frame_on(True)
+    ax.patch.set_visible(False)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
 
 def diversify():
         #Diversify to do (Diversify will diversify portfolio):
