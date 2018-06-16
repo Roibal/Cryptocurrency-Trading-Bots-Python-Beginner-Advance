@@ -50,7 +50,7 @@ def run():
     while 1:
         ActiveTrader()
 
-def arbitrage(cycle_num=5, cycle_time=120):
+def arbitrage(cycle_num=5, cycle_time=240):
     #Create Triangular Arbitrage Function
     print("Arbitrage Function Running")
     fee_percentage = 0.001          #divided by 100
@@ -181,8 +181,8 @@ def arbitrage(cycle_num=5, cycle_time=120):
             make_patch_spines_invisible(par2)
             par2.spines["right"].set_visible(True)
             #Graph Rate & Calculated Rate on Left Hand Side
-            p1, = host.plot(time_list, rateA, 'k', label = "{}".format(arb_list[0]))
-            p1, = host.plot(time_list, rateB, 'k+', label = "{} / {}".format(arb_list[1], arb_list[2]))
+            p1, = host.plot(time_list, rateA, "k", label = "{}".format(arb_list[0]))
+            p1, = host.plot(time_list, rateB, "k+", label = "{} / {}".format(arb_list[1], arb_list[2]))
             #p1, = host.plot(time_list, rateB_fee, 'k+', label = "{} / {} - with Fee".format(arb_list[1], arb_list[2]))
             #Graph Exchange Rate (Originals)
             p2, = par1.plot(time_list, price1, "b-", label="Price - {}".format(arb_list[1]))
@@ -191,8 +191,8 @@ def arbitrage(cycle_num=5, cycle_time=120):
 
             host.set_xlabel("Time")
             host.set_ylabel("Exchange Rate")
-            par1.set_ylabel("Price - ", arb_list[1])
-            par2.set_ylabel("Price - ", arb_list[2])
+            par1.set_ylabel("Price - {}".format(arb_list[1]))
+            par2.set_ylabel("Price - {}".format(arb_list[2]))
             host.yaxis.label.set_color(p1.get_color())
             tkw = dict(size=4, width=1.5)
             host.tick_params(axis='y', colors=p1.get_color(), **tkw)
