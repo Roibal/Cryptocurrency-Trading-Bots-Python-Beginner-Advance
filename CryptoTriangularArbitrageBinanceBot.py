@@ -52,7 +52,7 @@ def initialize_arb():
     welcome_message+= "Hello and Welcome to the Binance Arbitrage Crypto Trader Bot Python Script\nCreated 2018 by Joaquin Roibal (@BlockchainEng)"
     welcome_message+= "A quick 'run-through' will be performed to introduce you to the functionality of this bot\n"
     welcome_message+="To learn more visit medium.com/@BlockchainEng or watch introductory Youtube Videos"
-    welcome_message+="Copyright 2018 by Joaquin Roibal"
+    welcome_message+="\nCopyright 2018 by Joaquin Roibal\n"
     bot_start_time = str(datetime.now())
     welcome_message+= "\nBot Start Time: {}\n\n\n".format(bot_start_time)
     print(welcome_message)

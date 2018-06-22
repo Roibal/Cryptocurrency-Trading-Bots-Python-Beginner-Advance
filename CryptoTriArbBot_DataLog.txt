@@ -1,0 +1,95 @@
+
+
+---------------------------------------------------------
+
+Hello and Welcome to the Binance Arbitrage Crypto Trader Bot Python Script
+Created 2018 by Joaquin Roibal (@BlockchainEng)A quick 'run-through' will be performed to introduce you to the functionality of this bot
+To learn more visit medium.com/@BlockchainEng or watch introductory Youtube VideosCopyright 2018 by Joaquin Roibal
+Bot Start Time: 2018-06-22 11:51:42.964313
+
+
+Starting Portfolio: [10.447733600487705, 100.0, 10108.31056859837, 500.0, '2018-06-22 11:51:48.561739']Beginning Binance Arbitrage Function Data Collection - Running
+Data Collection Cycle Number: 0
+Currency Pair: ETHBTC
+Exchange Rate: 0.07682800
+Currency Pair: BNBETH
+Exchange Rate: 0.03343000
+Currency Pair: BNBBTC
+Exchange Rate: 0.00256980
+Buy: 0.076828
+Sell: 0.0768710749896
+Arbitrage Possibility - Potential Profit (Percentage): 0.056%
+Exchange Rate List: [0.076828, 29.913252, 0.0025698, datetime.datetime(2018, 6, 22, 11, 51, 51, 89332), 0.056]
+Beginning Binance Arbitrage Function Data Collection - Running
+Data Collection Cycle Number: 0
+Currency Pair: ETHUSDT
+Exchange Rate: 472.74000000
+Currency Pair: BNBETH
+Exchange Rate: 0.03343000
+Currency Pair: BNBUSDT
+Exchange Rate: 15.82240000
+Buy: 472.74
+Sell: 473.2994384448
+Arbitrage Possibility - Potential Profit (Percentage): 0.118%
+Exchange Rate List: [472.74, 29.913252, 15.8224, datetime.datetime(2018, 6, 22, 11, 51, 54, 613651), 0.118]
+Beginning Binance Arbitrage Function Data Collection - Running
+Data Collection Cycle Number: 0
+Currency Pair: BTCUSDT
+Exchange Rate: 6158.00000000
+Currency Pair: BNBBTC
+Exchange Rate: 0.00256820
+Currency Pair: BNBUSDT
+Exchange Rate: 15.82220000
+Buy: 6158.0
+Sell: 6160.8130157828
+Arbitrage Possibility - Potential Profit (Percentage): 0.046%
+Exchange Rate List: [6158.0, 389.377774, 15.8222, datetime.datetime(2018, 6, 22, 11, 51, 58, 137027), 0.046]
+[0.076828, 29.913252, 0.0025698, datetime.datetime(2018, 6, 22, 11, 51, 51, 89332), 0.056][472.74, 29.913252, 15.8224, datetime.datetime(2018, 6, 22, 11, 51, 54, 613651), 0.118][6158.0, 389.377774, 15.8222, datetime.datetime(2018, 6, 22, 11, 51, 58, 137027), 0.046]
+Most Profitable Market: ['ETHUSDT', 'BNBETH', 'BNBUSDT'] 
+Expected Profit: 0.118%Beginning Binance Arbitrage Function Data Collection - Running
+Data Collection Cycle Number: 0
+Currency Pair: ETHUSDT
+Exchange Rate: 472.74000000
+Currency Pair: BNBETH
+Exchange Rate: 0.03343000
+Currency Pair: BNBUSDT
+Exchange Rate: 15.82140000
+Buy: 472.74
+Sell: 473.2695251928
+Arbitrage Possibility - Potential Profit (Percentage): 0.112%
+PLACING ORDER
+STARTING TRI ARB PAPER TRADING FUNCTION
+Starting Amount: SDT 10108.31056859837
+Amount Coin 2: ETH 21.382388984639274
+Amount Coin 3: BNB 639.6167900595387
+Final Amount: SDT 10119.633082247987
+Exchange Rate List: [472.74, 29.913252, 15.8214, datetime.datetime(2018, 6, 22, 11, 52, 6, 665264), 0.112]
+Beginning Binance Arbitrage Function Data Collection - Running
+Data Collection Cycle Number: 0
+Currency Pair: ETHUSDT
+Exchange Rate: 473.46000000
+Currency Pair: BNBETH
+Exchange Rate: 0.03337100
+Currency Pair: BNBUSDT
+Exchange Rate: 15.80560000
+Buy: 473.46
+Sell: 473.63279077280004
+Arbitrage Possibility - Potential Profit (Percentage): 0.036%
+PLACING ORDER
+STARTING TRI ARB PAPER TRADING FUNCTION
+Starting Amount: SDT 10119.633082247987
+Amount Coin 2: ETH 21.37378676603723
+Amount Coin 3: BNB 640.4898438136454
+Final Amount: SDT 10123.326275380954
+Exchange Rate List: [473.46, 29.966138, 15.8056, datetime.datetime(2018, 6, 22, 11, 52, 50, 211177), 0.036]
+Beginning Binance Arbitrage Function Data Collection - Running
+Data Collection Cycle Number: 0
+Currency Pair: ETHUSDT
+Exchange Rate: 473.20000000
+Currency Pair: BNBETH
+Exchange Rate: 0.03337100
+Currency Pair: BNBUSDT
+Exchange Rate: 15.78570000
+Buy: 473.2
+Sell: 473.03646462660004
+No Arbitrage PossibilityExchange Rate List: [473.2, 29.966138, 15.7857, datetime.datetime(2018, 6, 22, 11, 53, 33, 756973), 0]
