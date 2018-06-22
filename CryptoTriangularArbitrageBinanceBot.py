@@ -50,8 +50,9 @@ def initialize_arb():
 
     welcome_message = "\n\n---------------------------------------------------------\n\n"
     welcome_message+= "Hello and Welcome to the Binance Arbitrage Crypto Trader Bot Python Script\nCreated 2018 by Joaquin Roibal (@BlockchainEng)"
-    welcome_message+= "A quick 'run-through' will be performed to introduce you to the functionality of this bot"
+    welcome_message+= "A quick 'run-through' will be performed to introduce you to the functionality of this bot\n"
     welcome_message+="To learn more visit medium.com/@BlockchainEng or watch introductory Youtube Videos"
+    welcome_message+="Copyright 2018 by Joaquin Roibal"
     bot_start_time = str(datetime.now())
     welcome_message+= "\nBot Start Time: {}\n\n\n".format(bot_start_time)
     print(welcome_message)
@@ -81,11 +82,35 @@ def initialize_arb():
         tickers = client.get_orderbook_tickers()
         #print(prices)
         #print(tickers)
+        #portfolio = [10, 100, 10000, 500, str(datetime.now())] #Number of: [Bitcoin, Ethereum, USDT, Binance Coin]
+        #Load Portfolio File
+        portfolio=[]
+        with open('Portfolio.txt') as f1:
+            read_data = f1.readlines()
+            for line in read_data:
+                load_portfolio = line       #Load Previous Portfolio
+        load_portfolio = list(load_portfolio[1:-1].split(','))
+        #print(load_portfolio)
+        #time.sleep(5)
+        #for i in range(0,3):
+            #portfolio[i] = float(portfolio[i])      #Set Type for first 4 values of Portfolio
+        i=0
+        for val in load_portfolio:
+            #print(val.strip())
+            if i == 4:
+                portfolio.append(str(datetime.now()))
+                break
+            portfolio.append(float(val))
+            i+=1
+        portf_msg = "Starting Portfolio: " + str(portfolio)
+        print(portf_msg)
+        portf_file_save(portfolio)
+        data_log_to_file(portf_msg)
         while 1:
             #Run Arbitrage Profit Functionality - To Determine Highest Profit Percentage - Cont Loop
             calc_profit_list =[]
             for arb_market in list_of_arb_sym:
-                calc_profit_list.append(arbitrage_bin(arb_market, tickers, 1, 1))
+                calc_profit_list.append(arbitrage_bin(arb_market, tickers, portfolio, 1, 1))
 
             for profit1 in calc_profit_list:
                 data_log_to_file(str(profit1))
@@ -106,7 +131,7 @@ def initialize_arb():
             arb_start_time = str(datetime.now())
             for i in range(0,5):
                 #Collect Arbitrage Data Into List format for 5 cycles, 30 second cycles (replaces functionality)
-                arb_list_data.append(arbitrage_bin(list_of_arb_sym[m], tickers, 1, 1, 'Yes'))   #'Yes' to place orders
+                arb_list_data.append(arbitrage_bin(list_of_arb_sym[m], tickers, portfolio, 1, 1, 'Yes'))   #'Yes' to place orders
                 #print(arb_list_data)
                 time.sleep(30)
             arb_end_time = str(datetime.now())
@@ -119,14 +144,16 @@ def data_log_to_file(message):
     with open('CryptoTriArbBot_DataLog.txt', 'a+') as f:
         f.write(message)
 
-def arbitrage_bin(list_of_sym, tickers, cycle_num=10, cycle_time=30, place_order='No', portfolio=[]):
+def portf_file_save(portfolio):
+    with open('Portfolio.txt', 'a+') as f:
+        f.write('\n'+str(portfolio))
+
+def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, place_order='No'):
     #Create Triangular Arbitrage Function
     arb_message = "Beginning Binance Arbitrage Function Data Collection - Running\n"
     print(arb_message)
     data_log_to_file(arb_message)
     time.sleep(2)
-    if len(portfolio)==0:
-        portfolio = [10, 100, 10000, 500]   #Number of: [Bitcoin, Ethereum, USDT, Binance Coin]
     fee_percentage = 0.0005          #divided by 100
     #Created Arbitrage Functionality for  with Python-Binance
     for i in range(0,1):    #initialize Exchange
@@ -252,9 +279,10 @@ def arbitrage_bin(list_of_sym, tickers, cycle_num=10, cycle_time=30, place_order
                         place_order_msg = "PLACING ORDER"
                         print(place_order_msg)
                         data_log_to_file(place_order_msg)
-                        #Buy Currency 2 with Currency 1
-                        #Buy Currency 3 with Currency 2
-                        #Buy Curerncy 1 with Currency 3
+                        #Call function that will paper-trade with portfolio
+                        #portfolio = list(portfolio)
+                        portfolio = tri_arb_paper(portfolio, list_of_sym, exch_rate_list)
+                        portf_file_save(portfolio)
                 else:
                     arb_2_msg = "No Arbitrage Possibility"
                     print(arb_2_msg)
@@ -272,7 +300,37 @@ def arbitrage_bin(list_of_sym, tickers, cycle_num=10, cycle_time=30, place_order
             print('\nARBITRAGE FUNCTIONALITY SUCCESSFUL - Data of Exchange Rates Collected\n')
     return exch_rate_list
 
-            #time.sleep(20)
+def tri_arb_paper(portfolio1, sym_list, list_exch_rates):
+    #Determine Which Coin Starting With
+    tri_arb_paper_msg = "\nSTARTING TRI ARB PAPER TRADING FUNCTION\n"
+    print(tri_arb_paper_msg)
+    #print(portfolio1)
+    time.sleep(10)
+    data_log_to_file(tri_arb_paper_msg)
+    if sym_list[0][-3:]=='BTC':
+        portf_pos = 0
+    elif sym_list[0][-3:]=='ETH':
+        portf_pos = 1
+    elif sym_list[0][-3:]=='SDT':
+        portf_pos = 2
+    elif sym_list[0][-3:]=='BNB':
+        portf_pos = 3
+    start_amount = float(portfolio1[portf_pos])
+    amt_coin2 = start_amount / float(list_exch_rates[0])
+    amt_coin3 = amt_coin2 * float(list_exch_rates[1])
+    final_amount = amt_coin3 * float(list_exch_rates[2])
+    tri_arb_paper_msg = "Starting Amount: "+str(sym_list[0][-3:])+" "+str(start_amount)+'\n'
+    #Buy Currency 2 with Currency 1
+    tri_arb_paper_msg += "Amount Coin 2: "+str(sym_list[0][0:3])+" "+str(amt_coin2)+'\n'
+    #Buy Currency 3 with Currency 2
+    tri_arb_paper_msg += "Amount Coin 3: "+str(sym_list[2][0:3])+" "+str(amt_coin3) +'\n'
+    #Buy Currency 1 with Currency 3
+    tri_arb_paper_msg += "Final Amount: "+str(sym_list[0][-3:])+" "+str(final_amount)+'\n'
+    print(tri_arb_paper_msg)
+    data_log_to_file(tri_arb_paper_msg)
+    portfolio1[portf_pos] = final_amount
+    portfolio1[-1] = str(datetime.now())
+    return portfolio1
 
 def viz_arb_data(list_exch_rate_list, arb_market, start_time, end_time):
     viz_msg = "RUNNING ARBITRAGE VISUALIZATION FUNCTIONALITY"
@@ -337,12 +395,12 @@ def viz_arb_data(list_exch_rate_list, arb_market, start_time, end_time):
     host.legend(lines, [l.get_label() for l in lines])  #show Legend
     fname = "Binance_Test.png"  #+"-"+str(arb_market[0])+str(arb_market[1])+str(arb_market[2])+".png"
     #Future: Include Start/End Time
-    plt.savefig(fname)
+    plt.savefig(fname) #Changes to make - Format
     """, dpi=None, facecolor='w', edgecolor='w',
         orientation='portrait', papertype=None, format=None,
         transparent=False, bbox_inches=None, pad_inches=0.1,
         frameon=None)"""
-    print_figure_message = "Data Collected Figure Printed & Saved"
+    print_figure_message = "Data Collected Figure Printed & Saved - " + str(fname)
     print(print_figure_message)
     data_log_to_file(print_figure_message)
     #plt.show()
