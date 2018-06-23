@@ -144,8 +144,8 @@ def data_log_to_file(message):
     with open('CryptoTriArbBot_DataLog.txt', 'a+') as f:
         f.write(message)
 
-def portf_file_save(portfolio):
-    with open('Portfolio.txt', 'a+') as f:
+def portf_file_save(portfolio, filename='Portfolio.txt'):
+    with open(filename, 'a+') as f:
         f.write('\n'+str(portfolio))
 
 def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, place_order='No'):
@@ -218,6 +218,7 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
             for k in range(0,cycle_num):
                 i=0
                 exch_rate_list = []
+                profit_fee_list = []
                 data_collect_message1 = "Data Collection Cycle Number: "+str(k) +'\n'
                 print(data_collect_message1)
                 data_log_to_file(data_collect_message1)
@@ -269,10 +270,16 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
                     arb_1_msg = "Arbitrage Possibility - "
                     #Calculate Profit, append to List
                     arb_profit = round((float(rate2)-float(rate1))/float(rate2)*100,3)
+                    arb_profit_fees = fee_percentage*3*100
+                    arb_profit_adjust = arb_profit - arb_profit_fees
                     arb_1_msg += "Potential Profit (Percentage): "+str(arb_profit) +'%\n'
+                    arb_1_msg += "\nPotential Fees (Percentage): "+str((arb_profit_fees))
+                    arb_1_msg += "\nAdjusted Profit (Percentage): "+str(arb_profit_adjust)
                     print(arb_1_msg)
                     data_log_to_file(arb_1_msg)
                     exch_rate_list.append(arb_profit)
+                    profit_fee_list.append([arb_profit, arb_profit_fees, arb_profit_adjust])
+                    portf_file_save(profit_fee_list, 'Portfolio_fees_Rates.txt')
                     #Calculate Amount Profit (orderbooks)
                     #Place Order (Play Money)
                     if place_order == 'Yes':
@@ -282,7 +289,12 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
                         #Call function that will paper-trade with portfolio
                         #portfolio = list(portfolio)
                         portfolio = tri_arb_paper(portfolio, list_of_sym, exch_rate_list)
+                        portfolio2 = tri_arb_paper(portfolio, list_of_sym, exch_rate_list, 'Yes')
+                        #portfolio_strat1 = tri_arb_paper(portfolio, list_of_sym, exch_rate_list, 'Yes')
+                        if arb_profit_adjust>0:
+                            portf_file_save(portfolio2, "Portfolio_fees_strategy1.txt")
                         portf_file_save(portfolio)
+                        portf_file_save(portfolio2, 'Portfolio_fees.txt')
                 else:
                     arb_2_msg = "No Arbitrage Possibility"
                     print(arb_2_msg)
@@ -300,7 +312,7 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
             print('\nARBITRAGE FUNCTIONALITY SUCCESSFUL - Data of Exchange Rates Collected\n')
     return exch_rate_list
 
-def tri_arb_paper(portfolio1, sym_list, list_exch_rates):
+def tri_arb_paper(portfolio1, sym_list, list_exch_rates, fees='No', fee=0.0005):
     #Determine Which Coin Starting With
     tri_arb_paper_msg = "\nSTARTING TRI ARB PAPER TRADING FUNCTION\n"
     print(tri_arb_paper_msg)
@@ -315,21 +327,62 @@ def tri_arb_paper(portfolio1, sym_list, list_exch_rates):
         portf_pos = 2
     elif sym_list[0][-3:]=='BNB':
         portf_pos = 3
-    start_amount = float(portfolio1[portf_pos])
-    amt_coin2 = start_amount / float(list_exch_rates[0])
-    amt_coin3 = amt_coin2 * float(list_exch_rates[1])
-    final_amount = amt_coin3 * float(list_exch_rates[2])
-    tri_arb_paper_msg = "Starting Amount: "+str(sym_list[0][-3:])+" "+str(start_amount)+'\n'
-    #Buy Currency 2 with Currency 1
-    tri_arb_paper_msg += "Amount Coin 2: "+str(sym_list[0][0:3])+" "+str(amt_coin2)+'\n'
-    #Buy Currency 3 with Currency 2
-    tri_arb_paper_msg += "Amount Coin 3: "+str(sym_list[2][0:3])+" "+str(amt_coin3) +'\n'
-    #Buy Currency 1 with Currency 3
-    tri_arb_paper_msg += "Final Amount: "+str(sym_list[0][-3:])+" "+str(final_amount)+'\n'
-    print(tri_arb_paper_msg)
-    data_log_to_file(tri_arb_paper_msg)
-    portfolio1[portf_pos] = final_amount
-    portfolio1[-1] = str(datetime.now())
+
+    #This Section of Code will calculate & save profit for non/fee or fee trades
+    if fees == 'Yes':
+        start_amount = float(portfolio1[portf_pos])
+        amt_coin2 = start_amount / float(list_exch_rates[0])
+        amt_coin2_fee = amt_coin2*fee
+        amt_coin2_adj = amt_coin2*(1-fee)
+        amt_coin3 = amt_coin2_adj * float(list_exch_rates[1])
+        amt_coin3_fee = amt_coin3 * fee
+        amt_coin3_adj = amt_coin3*(1-fee)
+        final_amount = amt_coin3 * float(list_exch_rates[2])
+        final_amount_fee = final_amount *fee
+        final_amount_adj = final_amount *(1-fee)
+        tri_arb_paper_msg = "Starting Amount: "+str(sym_list[0][-3:])+" "+str(start_amount)+'\n'
+        #Buy Currency 2 with Currency 1
+        tri_arb_paper_msg += "\nAmount Coin 2: "+str(sym_list[1][0:3])+" "+str(amt_coin2)+'\n'
+        tri_arb_paper_msg += "\nAmount Coin 2 Fee: "+str(sym_list[1][0:3])+" "+str(amt_coin2_fee)+'\n'
+        tri_arb_paper_msg += "\nAmount Coin 2 Adjusted: "+str(sym_list[1][0:3])+" "+str(amt_coin2_adj)+'\n'
+        #Buy Currency 3 with Currency 2
+        tri_arb_paper_msg += "\nAmount Coin 3: "+str(sym_list[2][0:3])+" "+str(amt_coin3) +'\n'
+        tri_arb_paper_msg += "\nAmount Coin 3 Fee: "+str(sym_list[2][0:3])+" "+str(amt_coin3_fee)+'\n'
+        tri_arb_paper_msg += "\nAmount Coin 3 Adjusted: "+str(sym_list[2][0:3])+" "+str(amt_coin3_adj)+'\n'
+        #Buy Currency 1 with Currency 3
+        tri_arb_paper_msg += "\nFinal Amount: "+str(sym_list[0][-3:])+" "+str(final_amount)+'\n'
+        tri_arb_paper_msg += "\nFinal Amount Fee: "+str(sym_list[0][-3:])+" "+str(final_amount_fee)+'\n'
+        tri_arb_paper_msg += "\nFinal Amount Adjusted: "+str(sym_list[0][-3:])+" "+str(final_amount_adj)+'\n'
+        #Create Log of 'Volume' and Transfer
+        #Volume(Total Paid), Fee, Final Amount
+        coin2_fee_amounts = [amt_coin2, amt_coin2_fee, amt_coin2_adj]
+        coin3_fee_amounts = [amt_coin3, amt_coin3_fee, amt_coin3_adj]
+        final_coin_fee_amounts = [final_amount, final_amount_fee, final_amount_adj]
+        list_of_fees = [coin2_fee_amounts, coin3_fee_amounts, final_coin_fee_amounts]
+        print(tri_arb_paper_msg)
+        print(list_of_fees)
+        data_log_to_file(str(list_of_fees))
+        for fee in list_of_fees:
+            portf_file_save(fee, 'list_fees_paid.txt')
+        data_log_to_file(tri_arb_paper_msg)
+        portfolio1[portf_pos] = final_amount_adj
+        portfolio1[-1] = str(datetime.now())
+    if fees == 'No':
+        start_amount = float(portfolio1[portf_pos])
+        amt_coin2 = start_amount / float(list_exch_rates[0])
+        amt_coin3 = amt_coin2 * float(list_exch_rates[1])
+        final_amount = amt_coin3 * float(list_exch_rates[2])
+        tri_arb_paper_msg = "Starting Amount: "+str(sym_list[0][-3:])+" "+str(start_amount)+'\n'
+        #Buy Currency 2 with Currency 1
+        tri_arb_paper_msg += "Amount Coin 2: "+str(sym_list[0][0:3])+" "+str(amt_coin2)+'\n'
+        #Buy Currency 3 with Currency 2
+        tri_arb_paper_msg += "Amount Coin 3: "+str(sym_list[2][0:3])+" "+str(amt_coin3) +'\n'
+        #Buy Currency 1 with Currency 3
+        tri_arb_paper_msg += "Final Amount: "+str(sym_list[0][-3:])+" "+str(final_amount)+'\n'
+        print(tri_arb_paper_msg)
+        data_log_to_file(tri_arb_paper_msg)
+        portfolio1[portf_pos] = final_amount
+        portfolio1[-1] = str(datetime.now())
     return portfolio1
 
 def viz_arb_data(list_exch_rate_list, arb_market, start_time, end_time):
