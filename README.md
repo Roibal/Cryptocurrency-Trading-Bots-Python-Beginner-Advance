@@ -45,7 +45,7 @@ Can be Deployed:
 
 * Joaquin Roibal
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance/graphs/contributors) who participated in this project.
 
 ## License
 
