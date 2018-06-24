@@ -18,8 +18,8 @@ v 1.00 - 6/24/2018 - Converted to Private_TriArbBot.py for Private Trader Group
 All Rights Reserved
 
 ATTENION: BY RUNNING SCRIPT YOU AGREE TO REMIT 1% of PROFITS TO THE FOLLOWING ADDRESS:
-BTC:
-ETH:
+BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
+
 NOTE: All Subsequent Version of Program must contain this message, unmodified, in it's entirety
 Copyright (c) 2018 by Joaquin Roibal
 """
@@ -59,8 +59,6 @@ class Binance:
 
     def synced(self, fn_name, **args):
         args['timestamp'] = int(time.time() - self.time_offset)
-        print(args['timestamp'])
-        print(time.time())
         return getattr(self.b, fn_name)(**args)
 
 client = Binance(public_key = BinanceKey1['api_key'], secret_key = BinanceKey1['api_secret'], sync=True)
@@ -110,7 +108,7 @@ def initialize_arb():
             #market_depth(symbol)
         #Collect all Symbols for Exchange
         #Find Arbitrage Opportunities
-        coin_list = ['ETH', 'BTC', 'BNB', 'USDT']
+        coin_list = ['BTC', 'ETH', 'USDT', 'BNB']
         list_of_symbols = ['ETHBTC', 'BNBETH', 'BNBBTC']
         list_of_symbols2 = ['ETHUSDT', 'BNBETH', 'BNBUSDT']
         list_of_symbols3 = ['BTCUSDT', 'BNBBTC', 'BNBUSDT']
@@ -212,7 +210,7 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
     arb_message = "Beginning Binance Arbitrage Function Data Collection - Running\n"
     print(arb_message)
     data_log_to_file(arb_message)
-    time.sleep(2)
+    #time.sleep(2)
     fee_percentage = 0.05*3          #divided by 100
     #Created Arbitrage Functionality for  with Python-Binance
     for i in range(0,1):    #initialize Exchange
@@ -348,7 +346,7 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
                                 #Place 3 orders in succession buying/selling coins for the tri arb
                                 for a, sym in enumerate(list_of_sym):
                                     i=0
-                                    quantity = [0.01, .1, 10, 1]       #Limit Amounts
+                                    quantity = [0.01, .1, 10, 1]       #Limit Amounts For Trading
                                     if i==0:
                                         order = client.synced('create_order',
                                                     symbol=sym,
