@@ -154,7 +154,7 @@ def arbitrage_bin(list_of_sym, tickers, portfolio, cycle_num=10, cycle_time=30, 
     print(arb_message)
     data_log_to_file(arb_message)
     time.sleep(2)
-    fee_percentage = 0.0005          #divided by 100
+    fee_percentage = 0.05          #divided by 100
     #Created Arbitrage Functionality for  with Python-Binance
     for i in range(0,1):    #initialize Exchange
         #create blacklist of exchanges
