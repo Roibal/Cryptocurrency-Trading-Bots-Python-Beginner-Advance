@@ -71,10 +71,13 @@ def initialize_arb():
             #market_depth(symbol)
         #Collect all Symbols for Exchange
         #Find Arbitrage Opportunities
-        list_of_symbols = ['ETHBTC', 'BNBETH', 'BNBBTC']
-        list_of_symbols2 = ['ETHUSDT', 'BNBETH', 'BNBUSDT']
+        coin_list = ['BTC', 'ETH', 'USDT', 'BNB', 'THETA', 'CVC']
+        list_of_symbols = ['BNBBTC', 'THETABNB', 'THETABTC']
+        list_of_symbols2 = ['BNBBTC', 'CVCBNB', 'CVCBTC']
         list_of_symbols3 = ['BTCUSDT', 'BNBBTC', 'BNBUSDT']
-        list_of_arb_sym = [list_of_symbols, list_of_symbols2, list_of_symbols3]
+        list_of_symbols4 = ['ETHBTC', 'BNBETH', 'BNBBTC']
+        list_of_symbols5 = ['ETHUSDT', 'BNBETH', 'BNBUSDT']
+        list_of_arb_sym = [list_of_symbols, list_of_symbols2, list_of_symbols3, list_of_symbols4, list_of_symbols5]
         #for sym in list_of_symbols:
             #info = client.get_symbol_info(sym)
             #print(info)
@@ -342,9 +345,9 @@ def tri_arb_paper(portfolio1, sym_list, list_exch_rates, fees='No', fee=0.0005):
         final_amount_adj = final_amount *(1-fee)
         tri_arb_paper_msg = "Starting Amount: "+str(sym_list[0][-3:])+" "+str(start_amount)+'\n'
         #Buy Currency 2 with Currency 1
-        tri_arb_paper_msg += "\nAmount Coin 2: "+str(sym_list[1][0:3])+" "+str(amt_coin2)+'\n'
-        tri_arb_paper_msg += "\nAmount Coin 2 Fee: "+str(sym_list[1][0:3])+" "+str(amt_coin2_fee)+'\n'
-        tri_arb_paper_msg += "\nAmount Coin 2 Adjusted: "+str(sym_list[1][0:3])+" "+str(amt_coin2_adj)+'\n'
+        tri_arb_paper_msg += "\nAmount Coin 2: "+str(sym_list[0][0:3])+" "+str(amt_coin2)+'\n'
+        tri_arb_paper_msg += "\nAmount Coin 2 Fee: "+str(sym_list[0][0:3])+" "+str(amt_coin2_fee)+'\n'
+        tri_arb_paper_msg += "\nAmount Coin 2 Adjusted: "+str(sym_list[0][0:3])+" "+str(amt_coin2_adj)+'\n'
         #Buy Currency 3 with Currency 2
         tri_arb_paper_msg += "\nAmount Coin 3: "+str(sym_list[2][0:3])+" "+str(amt_coin3) +'\n'
         tri_arb_paper_msg += "\nAmount Coin 3 Fee: "+str(sym_list[2][0:3])+" "+str(amt_coin3_fee)+'\n'
