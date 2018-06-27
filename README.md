@@ -1,6 +1,8 @@
 # Cryptocurrency-Trading-Bots-Python-Beginner-Advance
 Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
-
+---
+SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
+---
 This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. Contains three main files:
 
 **Triangular Arbitrage - CryptoTriangularArbitrageBinanceBot.py** (Read More: https://medium.com/@BlockchainEng/triangular-arbitrage-with-cryptocurrency-on-binance-exchange-with-python-videos-and-code-real-bc63d0905d05 )
