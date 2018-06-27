@@ -14,7 +14,7 @@ Instructional Youtube Video: https://www.youtube.com/watch?v=8AAN03M8QhA
 
 Did you enjoy the functionality of this bot? Tips always appreciated.
 
-BTC:
+BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
 ETH:
 
 NOTE: All Subsequent Version of Program must contain this message, unmodified, in it's entirety
