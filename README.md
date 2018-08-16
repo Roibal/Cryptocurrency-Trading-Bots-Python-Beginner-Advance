@@ -42,6 +42,12 @@ Version 2: cctx
 
 ### Installing
 
+git clone https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance.git
+git clone https://github.com/Roibal/python-binance.git
+place desired bot (Roibal_BinanceBot.py, Private_TriArbBot.py) in python-binance/examples folder
+
+then in your console, type **python Roibal_BinanceBot.py** or load in your favorite python IDE (such as Pycharm)
+
 https://www.youtube.com/watch?v=Y4RwD1OGz4c
 
 
