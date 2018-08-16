@@ -15,10 +15,6 @@ This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Writ
 **Beginner - RoibalBot_BinanceBot.py** (converted from original - Roibal Bot) ([Read More About Binance Trading Bot Here:](https://medium.com/@BlockchainEng/how-to-build-an-automated-cryptocurrency-trading-bot-on-binance-with-python-2cd9b5874e44) )
 **Advanced - AdvancedCryptocurrencyTradingBot.py** (converted from RoibalBot_BinanceBot.py) ([Read More About Advanced Cryptocurrency Trading Bot Course Here:](https://medium.com/@BlockchainEng/advanced-cryptocurrency-trading-bot-python-open-source-chapters-5-6-7-72b36b378750) )
 
-Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
----
-SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
----
 
 ## Getting Started
 
@@ -68,9 +64,14 @@ Can be Deployed:
 
 ## Authors
 
-* Joaquin Roibal
+* Joaquin Roibal (@BlockchainEng)
 
 See also the list of [contributors](https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance/graphs/contributors) who participated in this project.
+
+Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
+---
+SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
+---
 
 ## License
 
