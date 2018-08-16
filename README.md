@@ -1,6 +1,8 @@
 # Cryptocurrency-Trading-Bots-Python-Beginner-Advance
 
-Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal. This folder is used as a collection of information that you may find useful for making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets. 
+**Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** 
+
+This folder is used as a collection of information that you may find useful for making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets. 
 
 To help you to learn to implement this code as a profitable crypto trader, I have many online resources available. For example:
 
