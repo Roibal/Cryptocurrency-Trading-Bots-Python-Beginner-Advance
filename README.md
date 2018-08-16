@@ -24,6 +24,10 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 
 ## Getting Started
 
+The purpose of these bots is to implement an advanced strategy of cryptocurrency trading on a cryptocurrency exchange, such as Binance. You will need a computer, a binance account, and a copy of this code. You will be able to run this bot as a software to make profitable trades for you. 
+
+**USE AT YOUR OWN RISK - NOT RESPONSIBLE FOR ANY FINANCIAL LOSSES YOU MAY INCUR**
+
 To run any of these bots, first download the Roibal fork of 'Python-Binance', install or unzip this code on your computer. Then place whatever bot from this folder (RoibalBot.py) in the Python-Binance/Examples folder and run/edit that file with whatever python IDE you would like. For the more advanced bots you will need to install CCXT (can be installed via pip or pycharm install).
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
