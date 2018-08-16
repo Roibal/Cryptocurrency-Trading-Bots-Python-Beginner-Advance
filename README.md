@@ -24,14 +24,14 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 **The Historic-Legacy Folder** contains previous/out-dated copies of the bots that are located within this folder, you may be interested to develop from an earlier point, or edit before a certain modification to the code was made. 
 
 
-## Getting Started
+## Getting Started with Crypto Trading Bot Software
 
 The purpose of these bots is to implement an advanced strategy of cryptocurrency trading on a cryptocurrency exchange, such as Binance. You will need a computer, a binance account, and a copy of this code. You will be able to run this bot as a software to make profitable trades for you. 
 
 **USE AT YOUR OWN RISK - NOT RESPONSIBLE FOR ANY FINANCIAL LOSSES YOU MAY INCUR**
 
 
-### Installing
+### Installing and Running Crypto Trading Bot - Crypto Triangular Arbitrage, Basic Bitcoin Bot
 
 git clone https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance.git
 
