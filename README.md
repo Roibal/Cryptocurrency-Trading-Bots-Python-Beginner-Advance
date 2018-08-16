@@ -28,23 +28,6 @@ The purpose of these bots is to implement an advanced strategy of cryptocurrency
 
 **USE AT YOUR OWN RISK - NOT RESPONSIBLE FOR ANY FINANCIAL LOSSES YOU MAY INCUR**
 
-To run any of these bots, first download the Roibal fork of 'Python-Binance', install or unzip this code on your computer. Then place whatever bot from this folder (RoibalBot.py) in the Python-Binance/Examples folder and run/edit that file with whatever python IDE you would like. For the more advanced bots you will need to install CCXT (can be installed via pip or pycharm install).
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-https://www.youtube.com/watch?v=8AAN03M8QhA
-
-Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA_Nkw
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Version 1: Python-Binance (Roibal Fork)
-Version 2: cctx
-
-```
 
 ### Installing
 
@@ -60,6 +43,23 @@ then in your console, type **python Roibal_BinanceBot.py** or load in your favor
 
 https://www.youtube.com/watch?v=Y4RwD1OGz4c
 
+To run any of these bots, first download the Roibal fork of 'Python-Binance', install or unzip this code on your computer. Then place whatever bot from this folder (RoibalBot.py) in the Python-Binance/Examples folder and run/edit that file with whatever python IDE you would like. For the more advanced bots you will need to install CCXT (can be installed via pip or pycharm install).
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+https://www.youtube.com/watch?v=8AAN03M8QhA
+
+Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA_Nkw
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+Beginner: Python-Binance (Roibal Fork)
+Advanced: cctx
+
+```
 
 ## Deployment
 
