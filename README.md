@@ -1,16 +1,28 @@
 # Cryptocurrency-Trading-Bots-Python-Beginner-Advance
+
+Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal. This folder is used as a collection of information that you may find useful for making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets. 
+
+To help you to learn to implement this code as a profitable crypto trader, I have many online resources available. For example:
+
+1. Youtube Channel coverying Crypto Trading Bot Tutorial Videos: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
+2. Medium (Blog) about crypto trading bots: https://www.medium.com/@BlockchainEng
+3. Twitter: http://www.twitter.com/BlockchainEng
+4. Email: realestateblockchain1@gmail.com 
+
+This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. Contains three main files:
+
+**Triangular Arbitrage - Private_TriArb_SocialMedia.py** is the newest form of the crypto triangular arbitrage bots, and has all functionality to trade and output results via twitter. (Read More: https://medium.com/@BlockchainEng/triangular-arbitrage-with-cryptocurrency-on-binance-exchange-with-python-videos-and-code-real-bc63d0905d05 )
+**Beginner - RoibalBot_BinanceBot.py** (converted from original - Roibal Bot) ([Read More About Binance Trading Bot Here:](https://medium.com/@BlockchainEng/how-to-build-an-automated-cryptocurrency-trading-bot-on-binance-with-python-2cd9b5874e44) )
+**Advanced - AdvancedCryptocurrencyTradingBot.py** (converted from RoibalBot_BinanceBot.py) ([Read More About Advanced Cryptocurrency Trading Bot Course Here:](https://medium.com/@BlockchainEng/advanced-cryptocurrency-trading-bot-python-open-source-chapters-5-6-7-72b36b378750) )
+
 Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
 ---
 SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
 ---
-This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. Contains three main files:
-
-**Triangular Arbitrage - CryptoTriangularArbitrageBinanceBot.py** (Read More: https://medium.com/@BlockchainEng/triangular-arbitrage-with-cryptocurrency-on-binance-exchange-with-python-videos-and-code-real-bc63d0905d05 )
-**Beginner - RoibalBot_BinanceBot.py** (converted from original - Roibal Bot) ([Read More About Binance Trading Bot Here:](https://medium.com/@BlockchainEng/how-to-build-an-automated-cryptocurrency-trading-bot-on-binance-with-python-2cd9b5874e44) )
-**Advanced - AdvancedCryptocurrencyTradingBot.py** (converted from RoibalBot_BinanceBot.py) ([Read More About Advanced Cryptocurrency Trading Bot Course Here:](https://medium.com/@BlockchainEng/advanced-cryptocurrency-trading-bot-python-open-source-chapters-5-6-7-72b36b378750) )
-
 
 ## Getting Started
+
+To run any of these bots, first download the Roibal fork of 'Python-Binance', install or unzip this code on your computer. Then place whatever bot from this folder (RoibalBot.py) in the Python-Binance/Examples folder and run/edit that file with whatever python IDE you would like. For the more advanced bots you will need to install CCXT (can be installed via pip or pycharm install).
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -23,12 +35,13 @@ Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA
 What things you need to install the software and how to install them
 
 ```
-Version 1: Python-Binance
+Version 1: Python-Binance (Roibal Fork)
 Version 2: cctx
 
 ```
 
 ### Installing
+
 https://www.youtube.com/watch?v=Y4RwD1OGz4c
 
 
