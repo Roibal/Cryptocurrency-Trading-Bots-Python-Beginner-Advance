@@ -21,6 +21,8 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 
 **Advanced - AdvancedCryptocurrencyTradingBot.py** (converted from RoibalBot_BinanceBot.py) ([Read More About Advanced Cryptocurrency Trading Bot Course Here:](https://medium.com/@BlockchainEng/advanced-cryptocurrency-trading-bot-python-open-source-chapters-5-6-7-72b36b378750) )
 
+**The Historic-Legacy Folder** contains previous/out-dated copies of the bots that are located within this folder, you may be interested to develop from an earlier point, or edit before a certain modification to the code was made. 
+
 
 ## Getting Started
 
