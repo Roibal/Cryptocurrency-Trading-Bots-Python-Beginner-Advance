@@ -3,6 +3,7 @@
 
 **Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets.** You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
 
+## Online Bitcoin Bot Trading Resources
 
 To help you to learn to **implement this code as a profitable crypto trader**, I have many online resources available. For example:
 
@@ -10,12 +11,18 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 2. Medium (Blog) about crypto trading bots: https://www.medium.com/@BlockchainEng
 3. Twitter: http://www.twitter.com/BlockchainEng
 4. Email: realestateblockchain1@gmail.com 
+6. Chat Directly Via Telegram: https://t.me/BlockchainEng
+7. Bitcoin Trading Bot Software Telegram Group: https://t.co/YlGP1zvvw4
+8. LinkedIn: https://www.linkedin.com/in/joaquinroibal/
+9. Bitcoin Bot LinkedIn Group: https://www.linkedin.com/groups/12121918
 
 **July 2018 Update on Entire Crypto Trading Bots Project:** https://medium.com/p/crypto-bitcoin-trading-bot-in-python-july-2018-update-e11b875933da 
 
 Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
 
-## This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. You are most likely interested in one of three main files/implementations of particular strategies:
+## Blockchain Engineer Crypto Trading Bot Python Binance Code
+
+This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. You are most likely interested in one of three main files/implementations of particular strategies:
 
 **Triangular Arbitrage - Crypto_Triangular_Arbitrage_Bot.py** is the newest form of the crypto triangular arbitrage bots, and has all functionality to trade and output results via twitter. (Read More: https://medium.com/@BlockchainEng/triangular-arbitrage-with-cryptocurrency-on-binance-exchange-with-python-videos-and-code-real-bc63d0905d05 ) **NOTE: This is the most up to date tri arb code available; Historic versions available in Historic-Legacy folder.**
 
@@ -62,7 +69,6 @@ Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA
 * Joaquin Roibal (@BlockchainEng)
 
 See also the list of [contributors](https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance/graphs/contributors) who participated in this project.
-
 
 ---
 SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
