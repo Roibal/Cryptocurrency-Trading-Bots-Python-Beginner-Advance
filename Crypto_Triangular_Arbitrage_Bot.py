@@ -16,6 +16,7 @@ v 0.04 - 6/21/2018 - Changed Name to CryptoTriangularArbitrageBinanceBot.py
 v 1.00 - 6/24/2018 - Converted to Private_TriArbBot.py for Private Trader Group
 v 1.01 - 6/27/2018 - Incorporated Fees & Live Trading Functionality
 v 1.02 - 6/27/2018 - Fixed Order Functionality, Order Amounts, Fee Calculation
+v 2.00 - 11/12/2018 - Added 200+ pairs, Twitter percentage now fixed to 3 decimals, reduced time between calls to each pair.
 
 All Rights Reserved
 
