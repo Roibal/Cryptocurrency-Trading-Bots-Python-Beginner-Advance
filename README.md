@@ -1,9 +1,16 @@
-# Bitcoin Bot Trading on Binance - Guide , Instructional Videos, Working Code
+# Cryptocurrency / Bitcoin Trading Bot - Algorithmic Trading on Binance / Bitmex, Etc - Guide , Instructional Videos, Working Code
+# Crypto Triangular Arbitrage 
 ## Introduction to Cryptocurrency-Trading-Bots-Python-Beginner-Advance
 
 **Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets.** You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
 
-## Online Bitcoin Bot Trading Resources
+The particular focus for the past few months has been on crypto triangular arbitrage. 
+
+---
+TO SUPPORT THIS PROJECT SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
+---
+
+## Online Cryptocurrency Trading Bot Resources
 
 To help you to learn to **implement this code as a profitable crypto trader**, I have many online resources available. For example:
 
@@ -14,7 +21,7 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 6. Chat Directly Via Telegram: https://t.me/BlockchainEng
 7. Bitcoin Trading Bot Software Telegram Group: https://t.co/YlGP1zvvw4
 8. LinkedIn: https://www.linkedin.com/in/joaquinroibal/
-9. Bitcoin Bot LinkedIn Group: https://www.linkedin.com/groups/12121918
+9. Cryptocurrency Trading Software LinkedIn Group: https://www.linkedin.com/groups/12121918
 
 **July 2018 Update on Entire Crypto Trading Bots Project:** https://medium.com/p/crypto-bitcoin-trading-bot-in-python-july-2018-update-e11b875933da 
 
@@ -69,10 +76,6 @@ Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA
 * Joaquin Roibal (@BlockchainEng)
 
 See also the list of [contributors](https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance/graphs/contributors) who participated in this project.
-
----
-SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
----
 
 ## License
 
