@@ -4,11 +4,21 @@
 
 **Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets.** You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
 
-The particular focus for the past few months has been on crypto triangular arbitrage. 
+Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
 
 ---
 TO SUPPORT THIS PROJECT SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
 ---
+
+## Blockchain Engineer Crypto Trading Bot Python Binance Code
+
+This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. You are most likely interested in one of three main files/implementations of particular strategies:
+
+**Triangular Arbitrage - Crypto_Triangular_Arbitrage_Bot.py** is the newest form of the crypto triangular arbitrage bots, and has all functionality to trade and output results via twitter. (Read More: https://medium.com/@BlockchainEng/triangular-arbitrage-with-cryptocurrency-on-binance-exchange-with-python-videos-and-code-real-bc63d0905d05 ) **NOTE: This is the most up to date tri arb code available; Historic versions available in Historic-Legacy folder.**
+
+**Beginner - RoibalBot_BinanceBot.py** (converted from original - Roibal Bot) ([Read More About Binance Trading Bot Here:](https://medium.com/@BlockchainEng/how-to-build-an-automated-cryptocurrency-trading-bot-on-binance-with-python-2cd9b5874e44) )
+
+**Advanced - AdvancedCryptocurrencyTradingBot.py** (converted from RoibalBot_BinanceBot.py) ([Read More About Advanced Cryptocurrency Trading Bot Course Here:](https://medium.com/@BlockchainEng/advanced-cryptocurrency-trading-bot-python-open-source-chapters-5-6-7-72b36b378750) )
 
 ## Online Cryptocurrency Trading Bot Resources
 
@@ -25,17 +35,6 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 
 **July 2018 Update on Entire Crypto Trading Bots Project:** https://medium.com/p/crypto-bitcoin-trading-bot-in-python-july-2018-update-e11b875933da 
 
-Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
-
-## Blockchain Engineer Crypto Trading Bot Python Binance Code
-
-This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. You are most likely interested in one of three main files/implementations of particular strategies:
-
-**Triangular Arbitrage - Crypto_Triangular_Arbitrage_Bot.py** is the newest form of the crypto triangular arbitrage bots, and has all functionality to trade and output results via twitter. (Read More: https://medium.com/@BlockchainEng/triangular-arbitrage-with-cryptocurrency-on-binance-exchange-with-python-videos-and-code-real-bc63d0905d05 ) **NOTE: This is the most up to date tri arb code available; Historic versions available in Historic-Legacy folder.**
-
-**Beginner - RoibalBot_BinanceBot.py** (converted from original - Roibal Bot) ([Read More About Binance Trading Bot Here:](https://medium.com/@BlockchainEng/how-to-build-an-automated-cryptocurrency-trading-bot-on-binance-with-python-2cd9b5874e44) )
-
-**Advanced - AdvancedCryptocurrencyTradingBot.py** (converted from RoibalBot_BinanceBot.py) ([Read More About Advanced Cryptocurrency Trading Bot Course Here:](https://medium.com/@BlockchainEng/advanced-cryptocurrency-trading-bot-python-open-source-chapters-5-6-7-72b36b378750) )
 
 ## Historic - Legacy Folder 
 
