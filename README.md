@@ -74,6 +74,7 @@ Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA
 ## Authors
 
 * Joaquin Roibal (@BlockchainEng)
+* Nathan Head (@penlo)
 
 See also the list of [contributors](https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance/graphs/contributors) who participated in this project.
 
