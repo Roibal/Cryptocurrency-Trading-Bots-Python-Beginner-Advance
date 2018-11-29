@@ -259,7 +259,7 @@ def save_historic_klines_csv(symbol, start, end, interval):
             High = float(kline[3])
             Close = float(kline[4])
             Volume = float(kline[5])
-            format_kline = "{}, {}, {}, {}, {}, {}\n".format(time, open1, High, Low, Close, Volume)
+            format_kline = "{}, {}, {}, {}, {}, {}\n".format(time1, open1, High, Low, Close, Volume) #Thanks to user Apneef for correction
             ochl.append([time1, open1, Close, High, Low, Volume])
             f.write(format_kline)
 
