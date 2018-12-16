@@ -1,11 +1,9 @@
-# Cryptocurrency / Bitcoin Trading Bots by @BlockchainEng Joaquin Roibal - Crypto Triangular Arbitrage 
-## Algorithmic Trading on Binance / Bitmex, Etc - Guide , Instructional Videos, Working Code
-
-## Introduction to Cryptocurrency-Trading-Bots-Python-Beginner-Advance
-
-**Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets.** You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
+# Cryptocurrency / Bitcoin Trading Bots in Python Binance by @BlockchainEng Joaquin Roibal - Crypto Triangular Arbitrage 
+## Algo / Automated Trading on Binance / Bitmex Python Code, Guide, Instructional YouTube Videos,
 
 Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
+
+**Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets.** You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
 
 ---
 TO SUPPORT THIS PROJECT SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
