@@ -1,15 +1,24 @@
-# Cryptocurrency / Bitcoin Trading Bots in Python Binance by @BlockchainEng Joaquin Roibal - Crypto Triangular Arbitrage 
-## Algo / Automated Trading on Binance / Bitmex Python Code, Guide, Instructional YouTube Videos,
+# Cryptocurrency / Bitcoin Trading Bots in Python 
 
-Watch Crypto Trading Bot Tutorial Videos on YouTube: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
+## Algo / Automated Trading on Binance Python Code, Guide, Instructional YouTube Videos by @BlockchainEng Joaquin Roibal - Crypto Triangular Arbitrage
 
-**Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.** This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies to the cryptocurrency markets.** You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
+Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.
+
+This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies (Triangular Arbitrage, Market Making) to the cryptocurrency markets.** 
+
+You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
+
+## Getting Started with Crypto Trading Bot Software
+
+The purpose of these bots is to implement an advanced strategy of cryptocurrency trading on a cryptocurrency exchange, such as Binance. You will need a computer, a binance account, and a copy of this code. You will be able to run this bot as a software to make profitable trades for you. 
+
+**CRYPTO TRADING BOT VIDEOS**: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
+
+## Blockchain Engineer Crypto Trading Bot Python Binance Code
 
 ---
 TO SUPPORT THIS PROJECT SEND BTC: 1BYrAED4pi5DMKu2qZPv8pwe6rEeuxoCiD
 ---
-
-## Blockchain Engineer Crypto Trading Bot Python Binance Code
 
 This Portfolio contains Beginner &amp; Advanced Cryptocurrency Trading Bots Written in Python. You are most likely interested in one of three main files/implementations of particular strategies:
 
@@ -32,22 +41,15 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 8. LinkedIn: https://www.linkedin.com/in/joaquinroibal/
 9. Cryptocurrency Trading Software LinkedIn Group: https://www.linkedin.com/groups/12121918
 
-**July 2018 Update on Entire Crypto Trading Bots Project:** https://medium.com/p/crypto-bitcoin-trading-bot-in-python-july-2018-update-e11b875933da 
-
 
 ## Historic - Legacy Folder 
 
 **The Historic-Legacy Folder** contains previous/out-dated copies of the bots that are located within this folder, you may be interested to develop from an earlier point, or edit before a certain modification to the code was made. 
 
 
-## Getting Started with Crypto Trading Bot Software
-
-The purpose of these bots is to implement an advanced strategy of cryptocurrency trading on a cryptocurrency exchange, such as Binance. You will need a computer, a binance account, and a copy of this code. You will be able to run this bot as a software to make profitable trades for you. 
-
-**USE AT YOUR OWN RISK - NOT RESPONSIBLE FOR ANY FINANCIAL LOSSES YOU MAY INCUR**
-
-
 ### Installing and Running Crypto Trading Bot - Crypto Triangular Arbitrage, Basic Bitcoin Bot
+
+**STEP BY STEP TUTORIAL OF INSTALLATION AVAILABLE ON YOUTUBE HERE:** https://www.youtube.com/watch?v=u7ZOQar5V7w
 
 git clone https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance.git
 
@@ -85,3 +87,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * For Readme Format: Billie Thompson - [PurpleBooth](https://github.com/PurpleBooth)
 * Python-Binance
 * CCTX
+
+**USE AT YOUR OWN RISK - NOT RESPONSIBLE FOR ANY FINANCIAL LOSSES YOU MAY INCUR**
