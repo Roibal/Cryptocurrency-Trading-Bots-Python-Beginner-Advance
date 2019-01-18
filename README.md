@@ -40,6 +40,7 @@ To help you to learn to **implement this code as a profitable crypto trader**, I
 7. Bitcoin Trading Bot Software Telegram Group: https://t.co/YlGP1zvvw4
 8. LinkedIn: https://www.linkedin.com/in/joaquinroibal/
 9. Cryptocurrency Trading Software LinkedIn Group: https://www.linkedin.com/groups/12121918
+10. Crypto Bot Professionals For Hire: www.bot-professionals.com
 
 
 ## Historic - Legacy Folder 
