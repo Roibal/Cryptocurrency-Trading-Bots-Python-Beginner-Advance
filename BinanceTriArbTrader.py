@@ -551,7 +551,8 @@ def initialize_arb():
             #Visualize Collected Arb List Data with MatPlotLib
             viz_arb_data(arb_list_data, list_of_arb_sym[m], arb_start_time, arb_end_time, 'Yes', profit_message)  #Add 'Yes' for tweet
             """
-    except:
+    except Exception as e:
+        print(e)
         print("\nFAILURE INITIALIZE\n")
         raise
 
