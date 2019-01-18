@@ -1,18 +1,20 @@
 # Cryptocurrency / Bitcoin Trading Bots in Python 
 
-## Algo / Automated Trading on Binance Python Code, Guide, Instructional YouTube Videos by @BlockchainEng Joaquin Roibal - Crypto Triangular Arbitrage
+## Algo / Automated Cryptocurrency Trading with Python-Based Open Source Software 
+
+## Guides and Instructional YouTube Videos by @BlockchainEng Joaquin Roibal focusing on crypto trading strategies such as Triangular Arbitrage, Market Making, etc.
 
 Hello and welcome to the code repository of @BlockchainEng Joaquin Roibal.
 
-This Github Repository is used as a collection of information that you may find useful for **making your own cryptocurrency trading bots and bitcoin bots, or applying advanced trading strategies (Triangular Arbitrage, Market Making) to the cryptocurrency markets.** 
+This Github Repository is used as a collection of python codes that you may find useful for **making your own cryptocurrency trading bots or applying advanced trading strategies (Triangular Arbitrage, Market Making) to the cryptocurrency markets.** Among other useful tools. 
 
 You may want to begin by watching my youtube video channel on introduction to crypto bot trading or advanced strategies such as triangular arbitrage, which will help you to understand the purpose and reasoning behind the code in this repo. 
+
+CRYPTO TRADING BOT VIDEOS: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
 
 ## Getting Started with Crypto Trading Bot Software
 
 The purpose of these bots is to implement an advanced strategy of cryptocurrency trading on a cryptocurrency exchange, such as Binance. You will need a computer, a binance account, and a copy of this code. You will be able to run this bot as a software to make profitable trades for you. 
-
-**CRYPTO TRADING BOT VIDEOS**: https://www.youtube.com/channel/UCVTnyT4fUxYkvawbggo8-AQ
 
 ## Blockchain Engineer Crypto Trading Bot Python Binance Code
 
@@ -75,7 +77,6 @@ Visualization of Order Book and Scalping Functionality: https://youtu.be/zslp0FA
 ## Authors
 
 * Joaquin Roibal (@BlockchainEng)
-* Nathan Head (@penlo)
 
 See also the list of [contributors](https://github.com/Roibal/Cryptocurrency-Trading-Bots-Python-Beginner-Advance/graphs/contributors) who participated in this project.
 
